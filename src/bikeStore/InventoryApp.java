@@ -7,7 +7,26 @@ public class InventoryApp {
 
 	private static Scanner scan = new Scanner(System.in);
 	private static Inventory inv = new Inventory("Bikes");
-
+	
+	private static void displayBicycles() {
+		for (Bicycle element : inv.getBicycles()) {
+			System.out.println(element);
+		}
+		System.out.println("\n");
+	}
+	
+	private static void addBicycle() {
+		System.out.println("Year: ");
+		int a = scan.nextInt();
+		System.out.println("Make: ");
+		scan.nextLine();
+		String b = scan.nextLine();
+		System.out.println("Model: ");
+		String c = scan.nextLine();
+		inv.add(new Bicycle(a, b, c));
+		System.out.println();
+	}
+	
 	private static void remove(ArrayList<Bicycle> bicycles, int bikeId) {
 		int index = inv.bicycleSearch(bicycles, bikeId);
 		if (index >= 0) {
@@ -26,9 +45,29 @@ public class InventoryApp {
 			System.out.printf("Bicycle with ID: \"%d\" could not be found", bikeId);
 		}
 	}
-
-	public static void main(String[] args) {
-
+	
+	private static void searchBicycleById() {
+		System.out.println("Find bike with Id: ");
+		int findBikeId = scan.nextInt();
+		find(inv.getBicycles(), findBikeId);
+		System.out.println();
+	}
+	
+	private static void removeBicycleById(){
+		System.out.println("Remove bike with Id: ");
+		int removeBikeId = scan.nextInt();
+		remove(inv.getBicycles(), removeBikeId);
+	}
+	
+	private static void bicycleCount() {
+		System.out.printf("Number of bikes: %s%n%n", inv.getBicycles().size());
+	}
+	
+	private static void throwErrFromSelection() {
+		System.out.println("Error: Enter a selection 1 - 6\n");
+	}
+	
+	private static void mainMenu() {
 		inv.add(new Bicycle(1974, "Schwinn", "Le Tour"));
 		inv.add(new Bicycle(1975, "Huffy", "Thunder Road"));
 		inv.add(new Bicycle(1979, "Cornelo", "Super"));
@@ -46,45 +85,34 @@ public class InventoryApp {
 
 			switch (menu) {
 			case 1:
-				for (Bicycle element : inv.getBicycles()) {
-					System.out.println(element);
-				}
-				System.out.println("\n");
+				displayBicycles();
 				break;
 			case 2:
-				System.out.println("Year: ");
-				int a = scan.nextInt();
-				System.out.println("Make: ");
-				scan.nextLine();
-				String b = scan.nextLine();
-				System.out.println("Model: ");
-
-				String c = scan.nextLine();
-				inv.add(new Bicycle(a, b, c));
-				System.out.println();
+				addBicycle();
 				break;
 			case 3:
-				System.out.println("Find bike with Id: ");
-				int findBikeId = scan.nextInt();
-				find(inv.getBicycles(), findBikeId);
-				System.out.println();
+				searchBicycleById();
 				break;
 			case 4:
-				System.out.println("Remove bike with Id: ");
-				int removeBikeId = scan.nextInt();
-				remove(inv.getBicycles(), removeBikeId);
+				removeBicycleById();
 				break;
 			case 5:
-				inv.itemCount();
+				bicycleCount();
 				break;
 			case 6:
 				break;
 			default:
-				System.out.println("Error: Enter a selection 1 - 6\n");
+				throwErrFromSelection();
 				break;
 			}
 		}
+		
 		System.out.println("Goodbye");
 		scan.close();
+		
+	}
+
+	public static void main(String[] args) {
+		mainMenu();
 	}
 }
