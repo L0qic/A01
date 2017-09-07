@@ -55,7 +55,6 @@ public class Inventory {
 		bicycles.add(bicycle);
 	}
 
-
 	public int bicycleSearch(ArrayList<Bicycle> bicycles, int id) {
 		int bikeIndex = -1;
 		int findId = id;
@@ -72,11 +71,7 @@ public class Inventory {
 		}
 		return bikeIndex;
 	}
-
-	void bicycleCount() {
-		System.out.printf("Number of bikes: %s%n%n",getBicycles().size());
-	}
-
+	
 	/**
 	 * Prints the invoice that lists the name as a header and all bicycles in
 	 * individual lines.
