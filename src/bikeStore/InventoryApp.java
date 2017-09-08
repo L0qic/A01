@@ -1,6 +1,7 @@
 package bikeStore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class InventoryApp {
@@ -12,7 +13,7 @@ public class InventoryApp {
 		for (Bicycle element : inv.getBicycles()) {
 			System.out.println(element);
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 	
 	private static void addBicycle() {
@@ -27,42 +28,57 @@ public class InventoryApp {
 		System.out.println();
 	}
 	
+	/**
+	 * Removes a bicycle from the ArrayList<Bicycle> from an id. 
+	 * If the id does not exist it returns not found
+	 * @param bicycles
+	 * @param bikeId
+	 */
+	
 	private static void remove(ArrayList<Bicycle> bicycles, int bikeId) {
 		int index = inv.bicycleSearch(bicycles, bikeId);
 		if (index >= 0) {
+			Bicycle s = inv.getBicycles().get(index);
+			System.out.printf("%s %s %s removed %n%n", s.year, s.make, s.model);
 			bicycles.remove(index);
 		} else {
-			System.out.printf("Bike ID: %d does not exist%n", bikeId);
+			System.out.printf("Bicycle Id: \"%d\" not found %n%n", bikeId);
 		}
 	}
-
+	
+	/**
+	 * searches the ArrayList<Bicycle> from an id. 
+	 * If the id does not exist it returns not found.
+	 * 
+	 * @param bicycles
+	 * @param bikeId
+	 */
 	private static void find(ArrayList<Bicycle> bicycles, int bikeId) {
-		System.out.println("Find bike with ID Number: ");
 		int index = inv.bicycleSearch(bicycles, bikeId);
 		if (index >= 0) {
 			System.out.printf("%s%n%n", inv.getBicycles().get(index));
 		} else {
-			System.out.printf("Bicycle with ID: \"%d\" could not be found", bikeId);
+			System.out.printf("Bicycle with Id: \"%d\" not found %n", bikeId);
 		}
 	}
 	
 	private static void searchBicycleById() {
-		System.out.println("Find bike with Id: ");
+		System.out.println("Find Bicycle with Id: ");
 		int findBikeId = scan.nextInt();
 		find(inv.getBicycles(), findBikeId);
-		System.out.println();
+		System.out.println("");
 	}
 	
 	private static void removeBicycleById(){
-		System.out.println("Remove bike with Id: ");
+		System.out.println("Remove Bicycle with Id: ");
 		int removeBikeId = scan.nextInt();
 		remove(inv.getBicycles(), removeBikeId);
 	}
 	
 	private static void bicycleCount() {
-		System.out.printf("Number of bikes: %s%n%n", inv.getBicycles().size());
+		System.out.printf("Number of Bicycles: %s%n%n", inv.getBicycles().size());
 	}
-	
+		
 	private static void throwErrFromSelection() {
 		System.out.println("Error: Enter a selection 1 - 6\n");
 	}
@@ -74,13 +90,14 @@ public class InventoryApp {
 
 		int menu = 0;
 		while (menu != 6) {
-			System.out.println("1. Display all items");
-			System.out.println("2. Add an item");
-			System.out.println("3. Find an item");
-			System.out.println("4. Delete an item");
-			System.out.println("5. Number of items");
-			System.out.println("6. Exit");
-			System.out.println("Enter your selection: ");
+			ArrayList<String> theMenu;
+			theMenu = new ArrayList<String>(Arrays.asList(
+					"1. Display all items", "2. Add an item", "3. Find an item", 
+					"4. Delete an item", "5. Number of items", "6. Exit", 
+					"Enter your selection: "));
+			for (String s : theMenu) {
+		         System.out.print(s + "\n");
+		    }
 			menu = scan.nextInt();
 
 			switch (menu) {
