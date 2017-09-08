@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 
 public class Inventory {
-	private String name;
 	private ArrayList<Bicycle> bicycles;
 
 	/**
@@ -20,19 +19,8 @@ public class Inventory {
 	 * @param name
 	 */
 
-	public Inventory(String name) { // can initialize any number of fields
-		this.name = name;
+	public Inventory(String name) {
 		bicycles = new ArrayList<Bicycle>();
-	}
-
-	/**
-	 * Returns the value of the field name.
-	 *
-	 * @return
-	 */
-
-	public String getName() {
-		return name;
 	}
 
 	/**
@@ -55,6 +43,15 @@ public class Inventory {
 		bicycles.add(bicycle);
 	}
 
+	/**
+	 * Searches the ArrayList<Bicycle> from an id.
+	 * Returns the associated index
+	 * 
+	 * @param bicycles
+	 * @param id
+	 * @return
+	 */
+	
 	public int bicycleSearch(ArrayList<Bicycle> bicycles, int id) {
 		int bikeIndex = -1;
 		int findId = id;
@@ -71,16 +68,4 @@ public class Inventory {
 		}
 		return bikeIndex;
 	}
-	
-	/**
-	 * Prints the invoice that lists the name as a header and all bicycles in
-	 * individual lines.
-	 * 
-	 * @return
-	 */
-
-	public ArrayList<Bicycle> printInvoice() {
-		return getBicycles();
-	}
-
 }
