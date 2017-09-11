@@ -38,52 +38,17 @@ public class InventoryApp {
 		System.out.println();
 	}
 
-	/**
-	 * Removes a bicycle from the ArrayList<Bicycle> from an id. If the id does not
-	 * exist it returns not found
-	 * 
-	 * @param bicycles
-	 * @param bikeId
-	 */
-
-	private static void remove(ArrayList<Bicycle> bicycles, int bikeId) {
-		int index = inv.bicycleSearch(bicycles, bikeId);
-		if (index >= 0) {
-			Bicycle s = inv.getBicycles().get(index);
-			System.out.printf("%s %s %s removed %n%n", s.year, s.make, s.model);
-			bicycles.remove(index);
-		} else {
-			System.out.printf("Bicycle Id: \"%d\" not found %n%n", bikeId);
-		}
-	}
-
-	/**
-	 * searches the ArrayList<Bicycle> from an id. If the id does not exist it
-	 * returns not found.
-	 * 
-	 * @param bicycles
-	 * @param bikeId
-	 */
-	private static void find(ArrayList<Bicycle> bicycles, int bikeId) {
-		int index = inv.bicycleSearch(bicycles, bikeId);
-		if (index >= 0) {
-			System.out.printf("%s%n%n", inv.getBicycles().get(index));
-		} else {
-			System.out.printf("Bicycle with Id: \"%d\" not found %n", bikeId);
-		}
-	}
-
 	private static void searchBicycleById() {
 		System.out.println("Find Bicycle with Id: ");
 		int findBikeId = scan.nextInt();
-		find(inv.getBicycles(), findBikeId);
+		inv.find(inv.getBicycles(), findBikeId);
 
 	}
 
 	private static void removeBicycleById() {
 		System.out.println("Remove Bicycle with Id: ");
 		int removeBikeId = scan.nextInt();
-		remove(inv.getBicycles(), removeBikeId);
+		inv.remove(inv.getBicycles(), removeBikeId);
 	}
 
 	private static void bicycleCount() {
