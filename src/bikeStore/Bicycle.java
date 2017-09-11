@@ -1,5 +1,13 @@
 package bikeStore;
 
+/**
+ * Implements Bicycle class that takes three arguments 
+ * year, make and model and generates a unique id.
+ * 
+ * @author pdah
+ *
+ */
+
 public class Bicycle {
 
 	public int year;
@@ -14,22 +22,49 @@ public class Bicycle {
 		this.model = model;
 		id += count++;
 	}
+	
+	/**
+	 * Returns the year of the Bicycle
+	 * 
+	 * @return
+	 */
 
 	public int getYear() {
 		return year;
 	}
+	
+	/**
+	 * Returns the Make of the Bicycle
+	 * 
+	 * @return
+	 */
 
 	public String getMake() {
 		return make;
 	}
+	
+	/**
+	 * Returns the Model of the Bicycle
+	 * 
+	 * @return
+	 */
 
 	public String getModel() {
 		return model;
 	}
+	
+	/**
+	 * Return the id of the Bicycle
+	 * @return
+	 */
 
 	public int getId() {
 		return id;
 	}
+	
+	/**
+	 * Overrides the toString method for Bicycle class
+	 */
 
 	@Override
 	public String toString() {
